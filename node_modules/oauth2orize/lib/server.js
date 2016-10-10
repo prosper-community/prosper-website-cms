@@ -1,11 +1,14 @@
 /**
  * Module dependencies.
  */
-var UnorderedList = require('./unorderedlist')
+var SessionStore = require('./txn/session')
+  , UnorderedList = require('./unorderedlist')
   , authorization = require('./middleware/authorization')
+  , resume = require('./middleware/resume')
   , decision = require('./middleware/decision')
   , transactionLoader = require('./middleware/transactionLoader')
   , token = require('./middleware/token')
+  , authorizationErrorHandler = require('./middleware/authorizationErrorHandler')
   , errorHandler = require('./middleware/errorHandler')
   , utils = require('./utils')
   , debug = require('debug')('oauth2orize');
@@ -16,13 +19,16 @@ var UnorderedList = require('./unorderedlist')
  *
  * @api public
  */
-function Server() {
+function Server(options) {
+  options = options || {};
   this._reqParsers = [];
   this._resHandlers = [];
+  this._errHandlers = [];
   this._exchanges = [];
 
   this._serializers = [];
   this._deserializers = [];
+  this._txnStore = options.store || new SessionStore();
 }
 
 /**
@@ -57,6 +63,7 @@ Server.prototype.grant = function(type, phase, fn) {
     var mod = type;
     if (mod.request) { this.grant(mod.name, 'request', mod.request); }
     if (mod.response) { this.grant(mod.name, 'response', mod.response); }
+    if (mod.error) { this.grant(mod.name, 'error', mod.error); }
     return this;
   }
   if (typeof phase == 'object') {
@@ -64,6 +71,7 @@ Server.prototype.grant = function(type, phase, fn) {
     var mod = phase;
     if (mod.request) { this.grant(type, 'request', mod.request); }
     if (mod.response) { this.grant(type, 'response', mod.response); }
+    if (mod.error) { this.grant(type, 'error', mod.error); }
     return this;
   }
   
@@ -81,6 +89,9 @@ Server.prototype.grant = function(type, phase, fn) {
   } else if (phase == 'response') {
     debug('register response handler %s %s', type || '*', fn.name || 'anonymous');
     this._resHandlers.push({ type: type, handle: fn });
+  } else if (phase == 'error') {
+    debug('register error handler %s %s', type || '*', fn.name || 'anonymous');
+    this._errHandlers.push({ type: type, handle: fn });
   }
   return this;
 };
@@ -126,6 +137,13 @@ Server.prototype.authorization = function(options, validate, immediate) {
   return authorization(this, options, validate, immediate);
 };
 
+Server.prototype.resume = function(options, immediate) {
+  if (options && options.loadTransaction === false) {
+    return resume(this, options, immediate);
+  }
+  return [transactionLoader(this, options), resume(this, options, immediate)];
+};
+
 /**
  * Handle a user's response to an authorization dialog.
  *
@@ -136,6 +154,21 @@ Server.prototype.decision = function(options, parse) {
     return decision(this, options, parse);
   }
   return [transactionLoader(this, options), decision(this, options, parse)];
+};
+
+Server.prototype.authorizeError =
+Server.prototype.authorizationError =
+Server.prototype.authorizationErrorHandler = function(options) {
+  var loader = transactionLoader(this, options);
+  
+  return [
+    function transactionLoaderErrorWrapper(err, req, res, next) {
+      loader(req, res, function(ierr) {
+        return next(err);
+      });
+    },
+    authorizationErrorHandler(this, options)
+  ];
 };
 
 /**
@@ -317,6 +350,29 @@ Server.prototype._respond = function(txn, res, cb) {
   }
   next();
 };
+
+Server.prototype._respondError = function(err, txn, res, cb) {
+  var ultype = new UnorderedList(txn.req.type)
+    , stack = this._errHandlers
+    , idx = 0;
+    
+  function next(err) {
+    var layer = stack[idx++];
+    if (!layer) { return cb(err); }
+  
+    try {
+      debug('error:%s', layer.handle.name || 'anonymous');
+      if (layer.type === null || layer.type.equalTo(ultype)) {
+        layer.handle(err, txn, res, next);
+      } else {
+        next(err);
+      }
+    } catch (ex) {
+      return cb(ex);
+    }
+  }
+  next(err);
+}
 
 /**
  * Process token request using registered exchange middleware. 

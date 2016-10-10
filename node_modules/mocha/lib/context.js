@@ -1,4 +1,10 @@
 /**
+ * Module dependencies.
+ */
+
+var JSON = require('json3');
+
+/**
  * Expose `Context`.
  */
 
@@ -73,6 +79,21 @@ Context.prototype.slow = function(ms) {
  */
 Context.prototype.skip = function() {
   this.runnable().skip();
+  return this;
+};
+
+/**
+ * Allow a number of retries on failed tests
+ *
+ * @api private
+ * @param {number} n
+ * @return {Context} self
+ */
+Context.prototype.retries = function(n) {
+  if (!arguments.length) {
+    return this.runnable().retries();
+  }
+  this.runnable().retries(n);
   return this;
 };
 
