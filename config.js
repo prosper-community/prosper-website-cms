@@ -50,8 +50,8 @@ config = {
           options: {
             service: 'Mailgun',
             auth: {
-              user: 'postmaster@mg.prosper.community',
-              pass: 'cfe1cd22cce4f06babca29500b206b72'
+              user: 'postmaster@sandbox2a1fef65366a40659d51723febf503c9.mailgun.org',
+              pass: 'f145d952f996af8e2fcd7a3bf77bec72'
             }
           }
         },
