@@ -3,6 +3,7 @@
  */
 
 var Base = require('./base');
+var JSON = require('json3');
 
 /**
  * Expose `List`.
@@ -54,6 +55,7 @@ function clean(test) {
   return {
     title: test.title,
     fullTitle: test.fullTitle(),
-    duration: test.duration
+    duration: test.duration,
+    currentRetry: test.currentRetry()
   };
 }
