@@ -1,4 +1,40 @@
-<div class="nav">
+<div class="title-bar" data-responsive-toggle="site-nav" data-hide-for="large">
+  <button class="menu-icon" type="button" data-toggle></button>
+  <div class="title-bar-title">Menu</div>
+</div>
+
+<header class="site-header" id="site-nav">
+  <nav class="top-bar">
+    <section class="top-bar-left">
+      <ul class="vertical medium-horizontal menu">
+        <li><a href="/" class="logo">prosper</a></li>
+        {{#foreach navigation}}
+          <li><a href="{{url absolute="true"}}">{{label}}</a></li>
+        {{/foreach}}
+      </ul>
+    </section>
+      <section class="top-bar-right">
+        <ul class="horizontal menu">
+          <li>
+            <a href="https://www.facebook.com/prospercommunity" id="facebook" class="social-icon"></a>
+          </li>
+          <li>
+            <a href="https://twitter.com/prospercomm" id="twitter" class="social-icon"></a>
+          </li>
+          <li>
+            <a href="https://github.com/prosper-community" id="github" class="social-icon"></a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/company/prosper-community" id="linkedin" class="social-icon"></a>
+          </li>
+        </ul>
+      </section>
+    </ul>
+  </nav>
+</header>
+
+
+<!-- <div class="nav">
     <h3 class="nav-title">Menu</h3>
     <a href="#" class="nav-close">
         <span class="hidden">Close</span>
@@ -14,4 +50,4 @@
         <a class="subscribe-button icon-feed" href="{{@blog.url}}/rss/">Subscribe</a>
     {{/if}}
 </div>
-<span class="nav-cover"></span>
+<span class="nav-cover"></span> -->
