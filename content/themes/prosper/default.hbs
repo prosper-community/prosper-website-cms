@@ -35,15 +35,58 @@
         {{!-- All the main content gets inserted here, index.hbs, post.hbs, etc --}}
         {{{body}}}
 
-        {{!-- The tiny footer at the very bottom --}}
-        <footer class="site-footer clearfix">
-            <section class="copyright"><a href="{{@blog.url}}">{{@blog.title}}</a> &copy; {{date format="YYYY"}}</section>
-            <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        {{!-- The footer at the very bottom --}}
+        <footer class="l-site-footer">
+          <section class="l-footer-columns-wrapper">
+            <section class="l-footer-column">
+              <h4>More</h4>
+              <ul>
+                <li><a href="/search.html">Search</a></li>
+                <li><a href="#">Featured Projects</a></li>
+                <li><a href="https://docs.google.com/a/prosper.community/forms/d/1TPxDeQfLqScoHgmUYExZH2wP4b0DJgHFtuvXDFWPDoM/viewform" target="_blank">Add Project</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="http://blog.prosper.community">Blog</a></li>
+                <li><a href="https://www.generosity.com/emergencies-fundraising/prosper-the-world-s-refugee-projects-in-one-place">Donate</a></li>
+                <li><a href="/volunteer.html">Volunteer</a></li>
+                <li><a href="/playbook.html">Playbook</a></li>
+              </ul>
+            </section>
+            <section class="l-footer-column">
+              <h4>Resources</h4>
+              <ul class="l-facts-figures-list">
+                <li><a href="https://www.youtube.com/watch?v=RvOnXh3NN9w">The Refugee Crisis Explained</a></li>
+                <li><a href="https://medium.com/uprooted/what-refugees-ask-when-they-arrive-in-europe-e09c72c80ea9#.3x17739fz">What Refugees Ask When They Arrive in Europe</a></li>
+                <li><a href="http://www.unhcr.org.uk/about-us/key-facts-and-figures.html">UNHCR Key Facts and Figures</a></li>
+              </ul>
+
+              <h4>Legal</h4>
+              <ul class="l-facts-figures-list">
+                <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="/terms-of-service.html">Terms of Service</a></li>
+              </ul>
+            </section>
+            <section class="l-footer-column">
+              <a href="/volunteer.html#form" class="button">join now</a>
+              <h4>Contact</h4>
+              <ul>
+                <li><a href="mailto:tasha@prosper.community?subject=Joining%20The%20Team">tasha@prosper.community</a></li>
+              </ul>
+              <h4>Social</h4>
+              <ul class="social-icon-list">
+                <li><a href="http://twitter.com/ProsperComm"><img src="{{asset "/img/twitter.svg"}}" alt="twitter icon"></a></li>
+                <li><a href="https://www.facebook.com/prospercommunity"><img src="{{asset "/img/facebook.svg"}}" alt="facebook icon"></a></li>
+                <li><a href="https://www.linkedin.com/company/prosper-community"><img src="{{asset "/img/linkedin.svg"}}" alt="linkedin icon"></a></li>
+                <li><a href="https://github.com/prosper-community"><img src="{{asset "/img/github.svg"}}" alt="github icon"></a></li>
+              </ul>
+
+            </section>
+          </section>
         </footer>
+
 
     </div>
 
-    {{!-- jQuery is minified inside app.js; it needs to come before ghost_foot so that jQuery can be used in code injection --}}
+    {{!-- jQuery is minified inside app.js; it needs to come before the 'ghost_foot' tag so that jQuery can be used in code injection --}}
 
     {{!-- The main JavaScript file for Prosper Theme --}}
     <script type="text/javascript" src="{{asset "js/app.js"}}"></script>
