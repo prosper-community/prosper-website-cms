@@ -1,0 +1,37 @@
+{{!< default}}
+
+{{!-- This is a page template. A page outputs content just like any other post, and has all the same
+    attributes by default, but you can also customise it to behave differently if you prefer. --}}
+
+{{!-- Everything inside the #post tags pulls data from the page --}}
+{{#post}}
+
+<div class="marquee--secondary medium-unstack">
+    <div class="marquee__content">
+      <p class="lead">
+        We are designers, developers, data scientists, aid workers, and refugees&mdash;all driven by a shared belief that when refugees prosper, we all prosper.
+      </p>
+    </div>
+    <div class="marquee__image">
+      <img data-interchange="[/assets/img/about-hero-img-sm.jpg, small], [/assets/img/about-hero-img.png, medium]," src="/assets/img/about-hero-img.png">
+    </div>
+ </div>
+
+<main class="content" role="main">
+    <article>
+      <section>
+        <div class="l-main-content__wrapper">
+          <aside class="l-cta">
+            <h5>Contents</h5>
+            <ul class="no-bullet" id="toc">
+            </ul>
+            <a href="/volunteer/" class="button">join now</a>
+          </aside>
+          <div class="l-main-content" id="contents">
+              {{content}}
+          </div>
+        </div>
+      </section>
+    </article>
+</main>
+{{/post}}

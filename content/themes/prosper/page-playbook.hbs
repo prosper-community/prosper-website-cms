@@ -1,0 +1,27 @@
+{{!< default}}
+
+{{!-- This is a page template. A page outputs content just like any other post, and has all the same
+    attributes by default, but you can also customise it to behave differently if you prefer. --}}
+
+{{!-- Everything inside the #post tags pulls data from the page --}}
+{{#post}}
+
+<main class="content" role="main">
+  <article class="main-content">
+    <div class="marquee__bg" id="playbook">
+      <div class="marquee__wrapper">
+        <hgroup class="marquee__header">
+          <h1>Playbook</h1>
+          <h3 class="subheader">A document written by <a href="http://john-ellison.com">the founder of Prosper community</a></h3>
+        </hgroup>
+      </div>
+    </div>
+      <section class="l-content-section__wrapper">
+        <div class="l-content-section">
+          {{content}}
+        </div>
+      </section>
+    </article>
+</main>
+
+{{/post}}

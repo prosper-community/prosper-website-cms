@@ -1,0 +1,66 @@
+{{!< default}}
+
+{{!-- This is a page template. A page outputs content just like any other post, and has all the same
+    attributes by default, but you can also customise it to behave differently if you prefer. --}}
+
+{{!-- Everything inside the #post tags pulls data from the page --}}
+{{#post}}
+
+<main class="content" role="main">
+  <article class="main-content">
+      <div class="marquee__bg" id="volunteer">
+        <div class="marquee__wrapper">
+          <hgroup class="marquee__header" >
+            <h5 class="supraheader">join now</h5>
+            <h1>Volunteer Online</h1>
+            <h4 class="subheader">As a skilled digital worker, there are problems of the refugee crisis that only you can solve. With Prosper, you can volunteer your time online while keeping your day job and make an impact in the lives of refugees in Europe.</h4>
+          </hgroup>
+        </div>
+      </div>
+      <section class="l-content-section__wrapper">
+        <div class="l-content-section">
+          {{content}}
+        </div>
+      </section>
+
+      <div class="l-content-section__bg" >
+        <section class="l-content-section__wrapper">
+          <div class="l-content-section" id="form">
+            <h2>Request To Join</h2>
+            <p>If you are a skilled digital worker who would like to volunteer your time to help refugees prosper in Europe, please provide us with your details below. </p>
+            <p>Upon receiving your request, we will review the details you've provided. If it looks like we'd be a good fit to work together, we'll get back in touch with information on getting started as a volunteer.</p>
+            <form action="https://docs.google.com/forms/d/1w-8-OnbACv5M7c4KEHJtjXnDGwiPj_vnf7Lw9ereVow/formResponse" method="POST" class="madlib">
+            <fieldset>
+              <blockquote>
+                <label for="entry.372718999">My name is</label>
+                <input required type="text" name="entry.372718999" id="name" placeholder="Taylor Hill">, and <label for="entry.471281492">I live in </label>
+                <input type="text" name="entry.471281492" placeholder="Brighton, UK">
+                <label for="entry.1562080588">I would like to volunteer at Prosper because</label>
+                <textarea name="entry.1562080588" placeholder="I have seen the human suffering of the refugee crisis and would like to do whatever I can to help..."></textarea> .
+                <label for="entry.1686698865">I have skills in:</label>
+                <input required type="text" name="entry.1686698865" placeholder="Full-Stack Web Development, Project Management, etc.">, and
+                <label for="entry.1329871451">I speak: </label>
+                <input type="text" name="entry.1329871451" placeholder="English and Arabic">.
+                <label for="entry.413550969">I could offer up to</label>
+                <input type="number" name="entry.413550969" placeholder="10"> hours per week as a volunteer. <label for="entry.56111174">You can email me at </label> <input type="email" name="entry.56111174" id="email" placeholder="taylorh26@mail.com">, <label for="entry.392211406">and find me on Twitter at</label>
+                <input type="text" name="entry.392211406" placeholder="@TaylorHill">.
+                <br>
+
+                Looking forward,
+                <!-- Signature is automatically populated with jQuery in default.html in an ifpage block-->
+                <span class="madlib-signature-name">
+                </span>
+                <span class="madlib-signature-email">
+                </span>
+                <input type="checkbox" checked name="entry.1695604273" value="Yes"> <label for="entry.1695604273">P.S. &mdash; Please add me to the monthly newsletter.</label>
+              </blockquote>
+            </fieldset>
+              <input type="submit" value="submit" class="button">
+            </form>
+          </div>
+        </section>
+      </div>
+    </article>
+</main>
+
+{{/post}}
