@@ -63,7 +63,10 @@ img { border: 0; }
 svg:not(:root) { overflow: hidden; }
 figure { margin: 1em 40px; }
 hr { box-sizing: content-box; height: 0; }
-pre { overflow: auto; }
+pre {
+  overflow: auto;
+  margin-bottom: 1.6rem !important;
+ }
 code, kbd, pre, samp { font-family: monospace, monospace; font-size: 1em; }
 button, input, optgroup, select, textarea {
     color: inherit;
@@ -203,55 +206,6 @@ body {
     background: #D6EDFF;
 }
 
-h1, h2, h3,
-h4, h5, h6 {
-    -webkit-font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
-    -moz-font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
-    -o-font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
-    color: #2E2E2E;
-    line-height: 1.15em;
-    margin: 0 0 0.4em 0;
-    font-family: "Open Sans", sans-serif;
-    text-rendering: geometricPrecision;
-}
-
-h1 {
-    font-size: 5rem;
-    letter-spacing: -2px;
-    text-indent: -3px;
-}
-
-h2 {
-    font-size: 3.6rem;
-    letter-spacing: -1px;
-}
-
-h3 {
-    font-size: 3rem;
-    letter-spacing: -0.6px;
-}
-
-h4 {
-    font-size: 2.5rem;
-}
-
-h5 {
-    font-size: 2rem;
-}
-
-h6 {
-    font-size: 2rem;
-}
-
-a {
-    color: #4A4A4A;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: #111;
-}
-
 p, ul, ol, dl {
     -webkit-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
     -moz-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
@@ -303,34 +257,6 @@ hr {
     margin: 3.2em 0;
     padding: 0;
 }
-
-blockquote {
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    margin: 1.75em 0 1.75em -2.2em;
-    padding: 0 0 0 1.75em;
-    border-left: #4A4A4A 0.4em solid;
-}
-
-blockquote p {
-    margin: 0.8em 0;
-    font-style: italic;
-}
-
-blockquote small {
-    display: inline-block;
-    margin: 0.8em 0 0.8em 1.5em;
-    font-size: 0.9em;
-    color: #CCC;
-}
-
-blockquote small:before { content: "\2014 \00A0"; }
-
-blockquote cite {
-    font-weight: 700;
-}
-
-blockquote cite a { font-weight: normal; }
 
 mark {
     background-color: #fdffb6;
@@ -492,28 +418,6 @@ select {
     line-height: 30px;
 }
 
-button {
-    min-height: 35px;
-    width: auto;
-    display: inline-block;
-    padding: 0.1rem 1.5rem;
-    cursor: pointer;
-    outline: none;
-    text-decoration: none;
-    color: #fff;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 11px; /* Hacks targeting Firefox. */
-    line-height: 13px; /* Hacks targeting Firefox. */
-    font-weight: 300;
-    text-align: center;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    text-shadow: none;
-    border-radius: 0.3rem;
-    border: rgba(0,0,0,0.05) 0.1em solid;
-    background: #5ba4e5;
-}
-
 
 /* ==========================================================================
    3. Utilities - These things get used a lot
@@ -572,6 +476,10 @@ body.nav-opened .site-wrapper {
 /* ==========================================================================
    4. General - The main styles for the the theme
    ========================================================================== */
+
+.blog {
+  padding: 2rem 0;
+}
 
 /* Big cover image on the home page */
 .main-header {
@@ -760,30 +668,25 @@ body.nav-opened .nav {
 }
 
 .subscribe-button {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+    font-variant: small-caps;
+    letter-spacing: .08em;
     display: block;
-    position: absolute;
-    bottom: 30px;
-    left: 30px;
-    right: 30px;
-    height: 38px;
-    padding: 0 20px;
-    color: #111 !important; /* Overides `.nav a:link, .nav a:visited` colour */
-    text-align: center;
-    font-size: 12px;
-    font-family: "Open Sans", sans-serif;
-    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.4rem;
+    padding: .2em 1.6em;
     text-decoration: none;
-    line-height: 35px;
-    border-radius: 3px;
-    background: #fff;
-    transition: all ease 0.3s;
+    text-align: center;
+    width: max-content;
+    box-sizing: border-box;
+    border-radius: .5rem;
+    transition: .2s all ease;
+    border: none;
+    color: #015F64 !important; /* Overides `.nav a:link, .nav a:visited` colour */
+    background-color: #fff !important;
 }
 .subscribe-button:before {
-    font-size: 9px;
-    margin-right: 6px;
+    font-size: .7rem;
+    margin-right: .7rem;
 }
 
 
@@ -1027,16 +930,17 @@ body:not(.post-template) .post-title {
     margin: 0;
     font-size: 0.9em;
     line-height: 1.7em;
+    color: rgb(50, 50, 50);
 }
 
 .read-more {
     text-decoration: none;
+    margin-left: .5rem;
 }
 
 .post-meta {
     display: block;
-    margin: 1.75rem 0 0 0;
-    font-family: "Open Sans", sans-serif;
+    margin: 0;
     font-size: 1.5rem;
     line-height: 2.2rem;
     color: #9EABB3;
@@ -1046,7 +950,7 @@ body:not(.post-template) .post-title {
     width: 24px;
     height: 24px;
     float: left;
-    margin-right: 9px;
+    margin: .3rem .6rem 0 0;
     border-radius: 100%;
 }
 
@@ -1067,11 +971,9 @@ body:not(.post-template) .post-title {
 
 .post-date {
     display: inline-block;
-    margin-left: 8px;
-    padding-left: 12px;
+    margin-left: .7rem;
+    padding-left: .8rem;
     border-left: #d5dbde 1px solid;
-    text-transform: uppercase;
-    font-size: 1.3rem;
     white-space: nowrap;
 }
 
@@ -1118,7 +1020,7 @@ body:not(.post-template) .post-title {
    ========================================================================== */
 
 .post-template .post-header {
-   margin-bottom: 3.4rem;
+   margin-bottom: 0;
 }
 
 .post-template .post-title {
@@ -1126,13 +1028,7 @@ body:not(.post-template) .post-title {
 }
 
 .post-template .post-meta {
-    margin: 0;
-}
-
-.post-template .post-date {
-    padding: 0;
-    margin: 0;
-    border: none;
+    font-size: 1rem;
 }
 
 /* Stop elements, such as img wider than the post content, from
@@ -1142,16 +1038,8 @@ body:not(.post-template) .post-title {
     overflow: hidden;
 }
 
-/* Tweak the .post wrapper style */
-.post-template .post {
-    margin-top: 0;
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-/* Kill that stylish little circle that was on the border, too */
-.post-template .post:after {
-    display: none;
+.post-content {
+  margin-top: 1.6rem;
 }
 
 /* Keep images centered, and allow images wider than the main
@@ -1200,14 +1088,13 @@ body:not(.post-template) .post-title {
 }
 
 .post-footer h4 {
-    font-size: 1.8rem;
     margin: 0;
 }
 
 .post-footer p {
     margin: 1rem 0;
-    font-size: 1.4rem;
     line-height: 1.75em;
+    font-size: 1.3rem;
 }
 
 /* list of author links - location / url */
@@ -1215,7 +1102,7 @@ body:not(.post-template) .post-title {
     padding: 0;
     margin: 0;
     list-style: none;
-    font-size: 1.4rem;
+    font-size: 1rem;
     line-height: 1;
     font-style: italic;
     color: #9EABB3;
@@ -1234,7 +1121,6 @@ body:not(.post-template) .post-title {
 }
 
 .post-footer h4 a {
-    color: #2e2e2e;
     text-decoration: none;
 }
 
@@ -1253,10 +1139,14 @@ body:not(.post-template) .post-title {
     width: 140px;
 }
 
+.post-footer .share h4 {
+  font-size: 1rem;
+}
+
 .post-footer .share a {
     font-size: 1.8rem;
     display: inline-block;
-    margin: 1rem 1.6rem 1.6rem 0;
+    margin: 1rem .5rem .5rem 0;
     color: #BBC7CC;
     text-decoration: none;
 }
@@ -1332,7 +1222,7 @@ body:not(.post-template) .post-title {
     box-sizing: border-box;
     display: block;
     position: absolute;
-    top: -40px;
+    top: -75px;
     left: 50%;
     margin-left: -40px;
     width: 80px;
@@ -1371,7 +1261,7 @@ body:not(.post-template) .post-title {
 }
 
 .author-bio {
-    font-size: 1.8rem;
+    font-size: 1rem;
     line-height: 1.5em;
     font-weight: 200;
     color: #50585D;
@@ -2064,7 +1954,6 @@ body:not(.post-template) .post-title {
 
     .post-meta {
         font-size: 1.3rem;
-        margin-top: 1rem;
     }
 
     .post-footer {

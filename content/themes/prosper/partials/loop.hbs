@@ -7,10 +7,12 @@
 {{#foreach posts}}
 <article class="{{post_class}}">
     <header class="post-header">
-        <h2 class="post-title"><a href="{{url}}">{{title}}</a></h2>
+        <h4 class="post-title"><a href="{{url}}">{{title}}</a></h4>
     </header>
     <section class="post-excerpt">
-        <p>{{excerpt words="26"}} <a class="read-more" href="{{url}}">&raquo;</a></p>
+        <p>{{excerpt words="35"}}...
+          <a class="read-more" href="{{url}}">Read more &raquo;</a>
+        </p>
     </section>
     <footer class="post-meta">
         {{#if author.image}}<img class="author-thumb" src="{{author.image}}" alt="{{author.name}}" nopin="nopin" />{{/if}}
