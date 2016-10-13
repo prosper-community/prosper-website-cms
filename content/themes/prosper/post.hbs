@@ -71,8 +71,8 @@
             {{!-- Email subscribe form at the bottom of the page --}}
             {{#if @labs.subscribers}}
             <section class="gh-subscribe">
-                <h3 class="gh-subscribe-title">Subscribe to {{@blog.title}}</h3>
-                <p>Get the latest posts delivered right to your inbox.</p>
+                <h3 class="gh-subscribe-title">Subscribe to {{@blog.title}}'s  newsletter</h3>
+                <p>Get our monthly newsletter delivered right to your inbox with updates on the latest within the community including ways to get involved.</p>
                 {{subscribe_form placeholder="Your email address"}}
                 <span class="gh-subscribe-rss">or subscribe <a href="http://cloud.feedly.com/#subscription/feed/{{@blog.url}}/rss/">via RSS</a> with Feedly!</span>
             </section>
@@ -88,7 +88,7 @@
     {{#next_post}}
     <a class="read-next-story {{#if image}}" style="background-image: url({{image}}){{else}}no-cover{{/if}}" href="{{url}}">
         <section class="post">
-            <h3>{{title}}</h3>
+            <h2>{{title}}</h2>
             <p>{{excerpt words="19"}}&hellip;</p>
         </section>
     </a>
@@ -96,7 +96,7 @@
     {{#prev_post}}
     <a class="read-next-story prev {{#if image}}" style="background-image: url({{image}}){{else}}no-cover{{/if}}" href="{{url}}">
         <section class="post">
-            <h3>{{title}}</h3>
+            <h2>{{title}}</h2>
             <p>{{excerpt words="19"}}&hellip;</p>
         </section>
     </a>
